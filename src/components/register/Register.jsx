@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Select from 'react-select'
 
 const Register = () => {
   const [nama, setNama] = useState('')

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Login, Register } from './components'
+import { Investor, Login, Register } from './components'
 
 function App() {
   return (
@@ -7,6 +7,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/investor/*' element={<Investor />} />
+        <Route path='*'>Not Found</Route>
       </Routes>
     </BrowserRouter>
   )
