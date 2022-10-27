@@ -9,7 +9,20 @@ import DetailUsaha from './daftar-usaha/detailUsaha/DetailUsaha'
 import Dashboard from './dashboard/Dashboard'
 import Transaksi from './transaksi/Transaksi'
 
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+// universal cookie
+import Cookies from 'universal-cookie'
+
 const Investor = () => {
+  const cookies = new Cookies()
+
+  const navigate = useNavigate()
+  const token = cookies.get('TOKEN')
+
+  if (token === undefined) {
+    window.location.href = '/'
+    return
+  }
   const menus = [
     {
       name: 'dashboard',

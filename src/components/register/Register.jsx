@@ -1,33 +1,61 @@
 import { useState } from 'react'
+import axios from 'axios'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 const Register = () => {
-  const [nama, setNama] = useState('')
-  const [npwp, setNpwp] = useState('')
+  const [namaUser, setNamaUser] = useState('')
+  const [NPWP, setNPWP] = useState('')
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [penghasilan, setPenghasilan] = useState('')
-  const [telepon, setTelepon] = useState('')
-  const [nikah, setNikah] = useState('')
-  const [nik, setNik] = useState('')
-  const [ibuKandung, setIbuKandung] = useState('')
+  const [noTelepon, setNoTelepon] = useState('')
+  const [statusNikah, setStatusNikah] = useState('')
+  const [NIK, setNIK] = useState('')
+  const [namaIbuKandung, setNamaIbuKandung] = useState('')
   const [alamat, setAlamat] = useState('')
   const [role, setRole] = useState('')
   const [term, setTerm] = useState(false)
+  const [error, setError] = useState('')
+
+  const navigate = useNavigate()
+
+  // set configuration
+  const configuration = {
+    method: 'post',
+    url: 'http://localhost:5000/register',
+    data: {
+      namaUser,
+      NPWP,
+      penghasilan,
+      statusNikah,
+      NIK,
+      namaIbuKandung,
+      alamat,
+      noTelepon,
+      email,
+      password,
+      role,
+    },
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(
-      nama,
-      npwp,
-      email,
-      penghasilan,
-      nikah,
-      nik,
-      telepon,
-      ibuKandung,
-      alamat,
-      role,
-      term
-    )
+    if (term) {
+      axios(configuration)
+        .then((result) => {
+          if (Object.entries(result.data).length >= 2) {
+            navigate('/')
+          } else {
+            setError(result.data.message)
+          }
+          // console.log(Object.entries(result.data).length)
+          // console.log(result)
+        })
+        .catch((error) => {
+          setError(error.response.data.message)
+          // console.log(error)
+        })
+    }
   }
 
   return (
@@ -36,7 +64,7 @@ const Register = () => {
         <h1 className='font-semibold text-4xl'>Daftar Akun Baru</h1>
         <p className='mt-1 mb-6 font-medium text-2xl'>Masukan Identitas Anda</p>
 
-        <form action='' onSubmit={handleSubmit}>
+        <form action='/register' onSubmit={handleSubmit}>
           <div className='grid grid-cols-2 gap-x-9 gap-y-3'>
             {/* NAMA */}
             <div className='flex flex-1 flex-col'>
@@ -48,11 +76,11 @@ const Register = () => {
               </label>
               <input
                 type='text'
-                name='nama'
+                name='namaUser'
                 id='nama'
                 className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
-                value={nama}
-                onChange={(e) => setNama(e.target.value)}
+                value={namaUser}
+                onChange={(e) => setNamaUser(e.target.value)}
               />
             </div>
             {/* END NAMA */}
@@ -66,11 +94,11 @@ const Register = () => {
               </label>
               <input
                 type='text'
-                name='npwp'
+                name='NPWP'
                 id='npwp'
                 className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
-                value={npwp}
-                onChange={(e) => setNpwp(e.target.value)}
+                value={NPWP}
+                onChange={(e) => setNPWP(e.target.value)}
               />
             </div>
             {/* END NPWP */}
@@ -92,6 +120,24 @@ const Register = () => {
               />
             </div>
             {/* END EMAIL */}
+            {/* password */}
+            <div className='flex flex-1 flex-col'>
+              <label
+                htmlFor='password'
+                className='text-[#323232] font-medium text-[16px] mb-[10px]'
+              >
+                password <span className='text-red-600'>*</span>
+              </label>
+              <input
+                type='password'
+                name='password'
+                id='password'
+                className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {/* END password */}
             {/* PENGHASILAN PER TAHUN */}
             <div className='flex flex-1 flex-col'>
               <label
@@ -102,7 +148,7 @@ const Register = () => {
               </label>
               <input
                 type='text'
-                name='ppt'
+                name='penghasilan'
                 id='ppt'
                 className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
                 value={penghasilan}
@@ -120,11 +166,11 @@ const Register = () => {
               </label>
               <input
                 type='tel'
-                name='telepon'
+                name='noTelepon'
                 id='telepon'
                 className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
-                value={telepon}
-                onChange={(e) => setTelepon(e.target.value)}
+                value={noTelepon}
+                onChange={(e) => setNoTelepon(e.target.value)}
               />
             </div>
             {/* END NOMOR TELEPON */}
@@ -137,10 +183,10 @@ const Register = () => {
                 Status nikah <span className='text-red-600'>*</span>
               </label>
               <select
-                name='nikah'
+                name='statusNikah'
                 id='nikah'
                 className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
-                onChange={(e) => setNikah(e.target.value)}
+                onChange={(e) => setStatusNikah(e.target.value)}
               >
                 <option value='belum menikah'>Belum Menikah</option>
                 <option value='sudah menikah'>Sudah Menikah</option>
@@ -157,11 +203,11 @@ const Register = () => {
               </label>
               <input
                 type='text'
-                name='nik'
+                name='NIK'
                 id='nik'
                 className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
-                value={nik}
-                onChange={(e) => setNik(e.target.value)}
+                value={NIK}
+                onChange={(e) => setNIK(e.target.value)}
               />
             </div>
             {/* END NIK */}
@@ -175,11 +221,11 @@ const Register = () => {
               </label>
               <input
                 type='text'
-                name='nama-ibu-kandung'
+                name='namaIbuKandung'
                 id='nama-ibu-kandung'
                 className='text-base px-3 py-3 border-[#9DE09D] border-[1px] rounded-[5px] focus:ring-1 focus:ring-green-400 outline-none'
-                value={ibuKandung}
-                onChange={(e) => setIbuKandung(e.target.value)}
+                value={namaIbuKandung}
+                onChange={(e) => setNamaIbuKandung(e.target.value)}
               />
             </div>
             {/* END NAMA IBU KANDUNG */}
