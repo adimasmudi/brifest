@@ -18,7 +18,7 @@ const InformasiPendanaan = ({ umkm }) => {
           id='pendanaan'
           min={0}
           max={umkm.totalKebutuhanDana - umkm.terkumpul}
-          step={100}
+          step={10000}
           value={pendanaan}
           onInput={(e) => {
             setPendanaan(e.target.value)
