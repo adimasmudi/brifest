@@ -124,4 +124,130 @@ const daftarTransaksi = [
   },
 ]
 
-export default { umkms, listUsaha, daftarTransaksi }
+const investor = [
+  {
+    id: 1,
+    nama: 'Adi Hidayat',
+    umkm: 'Bakso Meledak',
+    gambar: 'investor1.png',
+  },
+  {
+    id: 2,
+    nama: 'Jim Armando',
+    umkm: 'Kursus Web',
+    gambar: 'investor2.png',
+  },
+  {
+    id: 3,
+    nama: 'Lucas',
+    umkm: 'Roti Bakar',
+    gambar: 'investor3.png',
+  },
+]
+
+const daftarUsahaUmkm = [
+  {
+    id: 1,
+    namaProduk: 'Bakso meledak',
+    namaPerusahaan: 'PT. adi putra',
+    kebuthanDana: 100000000,
+    danaTerkumpul: 54,
+    totalInvestor: 31,
+    laba: 3200000,
+    danaTerkumpul: 64,
+    riwayat: [
+      {
+        id: 1,
+        tanggal: '02/07/2022',
+        jam: '17:50',
+        judulPencatatan: 'Keuntungan hari minggu',
+        jumlah: 20000,
+        tipe: 'pemasukan',
+      },
+      {
+        id: 2,
+        tanggal: '12/07/2022',
+        jam: '12:30',
+        judulPencatatan: 'Bensin Ongkir',
+        jumlah: 20000,
+        tipe: 'pengeluaran',
+      },
+    ],
+    investor: [
+      {
+        id: 1,
+        nama: 'intan amelia',
+        tanggalPendanaan: '20 januari 2018',
+        jumlahPendanaan: 200000000,
+        totalDividen: 250000,
+      },
+      {
+        id: 2,
+        nama: 'Agoy yoga',
+        tanggalPendanaan: '21 januari 2018',
+        jumlahPendanaan: 60000000,
+        totalDividen: 250000,
+      },
+      {
+        id: 3,
+        nama: 'Faris',
+        tanggalPendanaan: '22 januari 2018',
+        jumlahPendanaan: 150000000,
+        totalDividen: 250000,
+      },
+    ],
+  },
+  {
+    id: 2,
+    namaProduk: 'Roti bakar',
+    namaPerusahaan: 'PT. Megah',
+    kebuthanDana: 50000000,
+    danaTerkumpul: 80,
+    totalInvestor: 31,
+    laba: 3200000,
+    danaTerkumpul: 64,
+    riwayat: [
+      {
+        id: 1,
+        tanggal: '02/07/2022',
+        jam: '17:50',
+        judulPencatatan: 'Keuntungan hari minggu',
+        jumlah: 20000,
+        tipe: 'pemasukan',
+      },
+      {
+        id: 2,
+        tanggal: '12/07/2022',
+        jam: '12:30',
+        judulPencatatan: 'Bensin Ongkir',
+        jumlah: 20000,
+        tipe: 'pengeluaran',
+      },
+    ],
+    investor: [
+      {
+        id: 1,
+        nama: 'intan amelia',
+        tanggalPendanaan: '20 januari 2018',
+        jumlahPendanaan: 200000000,
+        totalDividen: 250000,
+      },
+      {
+        id: 2,
+        nama: 'Agoy yoga',
+        tanggalPendanaan: '21 januari 2018',
+        jumlahPendanaan: 60000000,
+        totalDividen: 250000,
+      },
+      {
+        id: 3,
+        nama: 'Faris',
+        tanggalPendanaan: '22 januari 2018',
+        jumlahPendanaan: 150000000,
+        totalDividen: 250000,
+      },
+    ],
+  },
+]
+
+export default { umkms, listUsaha, daftarTransaksi, investor, daftarUsahaUmkm }
