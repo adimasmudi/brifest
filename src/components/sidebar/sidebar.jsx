@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 const sidebar = ({ menus, prefix }) => {
   return (
     <div className='min-w-[250px]'>
-      <h2 className='text-4xl font-medium mb-8'>Menu</h2>
+      <h2 className='text-4xl text-center font-medium mb-8'>Menu</h2>
 
       <ul className='mx-6 flex flex-1 flex-col gap-3'>
         {menus.map((menu, ind) => (
