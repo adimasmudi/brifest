@@ -24,7 +24,7 @@ const Portofolio = () => {
       </div>
       <div className='text-center'>
         <Link
-          to={'/'}
+          to={'#'}
           className='font-medium bg-[#5DD95D] rounded-lg py-2 px-8'
         >
           Lihat Detail

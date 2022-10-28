@@ -77,7 +77,7 @@ const DetailUsaha = () => {
               {toRupiah(usaha.totalDividen)}
             </h3>
             <Link
-              to={'/'}
+              to={'#'}
               className='flex w-full bg-green-800 text-white font-medium py justify-center rounded-md'
             >
               klaim

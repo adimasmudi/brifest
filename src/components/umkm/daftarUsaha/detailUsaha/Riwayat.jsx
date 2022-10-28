@@ -43,10 +43,10 @@ const Riwayat = ({ listRiwayat }) => {
                 </td>
                 <td className='text-sm'>{riwayat.tipe}</td>
                 <td className='text-sm flex flex-1 justify-center gap-3'>
-                  <Link to={'/'}>
+                  <Link to={'#'}>
                     <IconEdit color='#41A958' />
                   </Link>
-                  <Link to={'/'}>
+                  <Link to={'#'}>
                     <IconTrash color='#FF0707' />
                   </Link>
                 </td>

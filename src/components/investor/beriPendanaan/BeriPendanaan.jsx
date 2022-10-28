@@ -1,16 +1,40 @@
 import { IconStar } from '@tabler/icons'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink, Outlet, Route, Routes, useParams } from 'react-router-dom'
-import data from '../../../constants/data'
+// import data from '../../../constants/data'
 import Detail from './Detail'
 import InformasiPendanaan from './InformasiPendanaan'
 
+import axios from 'axios'
+
+// universal cookie
+import Cookies from 'universal-cookie'
+
 const BeriPendanaan = () => {
+  const [usaha, setUsaha] = useState([])
   const { id } = useParams()
-  const getUmkm = (id) => {
-    const index = data.umkms.findIndex((umkm) => umkm.id == id)
-    return data.umkms[index]
-  }
+
+  const cookies = new Cookies()
+
+  // const navigate = useNavigate()
+  const token = cookies.get('TOKEN')
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/investor/detailUsaha/${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((result) => {
+        setUsaha(result.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        // console.log(error)
+      })
+  }, [])
 
   const countStar = (num) => {
     const array = []
@@ -24,29 +48,27 @@ const BeriPendanaan = () => {
     return array
   }
 
-  const umkm = getUmkm(id)
-
-  //   console.log(umkm)
-
   return (
     <div className='m-6'>
       <div className='flex flex-1 gap-6'>
         <div>
           <img
-            src={`http://127.0.0.1:5173/assets/${umkm.gambar}`}
-            alt={umkm.gambar}
+            src={`http://localhost:5000/public/${usaha.images}`}
+            alt={usaha.images}
           />
         </div>
         <div className='p-3 bg-white rounded-2xl w-full'>
-          <h2 className='text-2xl font-medium'>{umkm.judul}</h2>
-          <p className='text-base font-light'>{umkm.pemilik}</p>
+          <h2 className='text-2xl font-medium'>{usaha.judul}</h2>
+          <p className='text-base font-light'>{usaha.namaPerusahaan}</p>
 
           <div className='flex gap-6'>
-            {umkm.rate} / 5{' '}
-            <div className='flex flex-1'>{countStar(umkm.rate)}</div>
+            {usaha.rate ? usaha.rate : 0} / 5{' '}
+            <div className='flex flex-1'>
+              {countStar(usaha.rate ? usaha.rate : 0)}
+            </div>
           </div>
           <h3 className='text-base font-semibold mt-4 mb-2'>Deskripsi Usaha</h3>
-          <p>{umkm.deskripsi}</p>
+          <p>{usaha.deskripsiUsaha}</p>
         </div>
       </div>
       <div>
@@ -57,7 +79,7 @@ const BeriPendanaan = () => {
             style={({ isActive }) => {
               return { background: isActive ? '#fff' : '' }
             }}
-            to={`/investor/beri-pendanaan/${umkm.id}/informasi-pendanaan`}
+            to={`/investor/beri-pendanaan/${usaha._id}/informasi-pendanaan`}
           >
             Informasi pendanaan
           </NavLink>
@@ -66,7 +88,7 @@ const BeriPendanaan = () => {
             style={({ isActive }) => {
               return { background: isActive ? '#fff' : '' }
             }}
-            to={`/investor/beri-pendanaan/${umkm.id}/detail`}
+            to={`/investor/beri-pendanaan/${usaha._id}/detail`}
           >
             Detail
           </NavLink>
@@ -74,12 +96,12 @@ const BeriPendanaan = () => {
         </div>
         <div className='bg-white p-6'>
           <Routes>
-            <Route path='/' element={<InformasiPendanaan umkm={umkm} />} />
+            <Route path='/' element={<InformasiPendanaan umkm={usaha} />} />
             <Route
               path='/informasi-pendanaan'
-              element={<InformasiPendanaan umkm={umkm} />}
+              element={<InformasiPendanaan umkm={usaha} />}
             />
-            <Route path='/detail' element={<Detail umkm={umkm} />} />
+            <Route path='/detail' element={<Detail umkm={usaha} />} />
           </Routes>
         </div>
       </div>

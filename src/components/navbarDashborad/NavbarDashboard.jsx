@@ -24,14 +24,14 @@ const NavbarDashboard = () => {
         <img src={logoBrifest} alt='logo Brifest' />
         <div className='flex flex-1 justify-end gap-10'>
           <form action='' onSubmit={logout} className='flex flex-row gap-2'>
-            <Link to={'/'} className='flex justify-center items-center'>
+            <Link to={'#'} className='flex justify-center items-center'>
               <IconBell size={42} color='#959595' />
             </Link>
-            <Link to={'/'} className='flex justify-center items-center'>
+            <Link to={'#'} className='flex justify-center items-center'>
               <IconMessageCircle size={42} color='#959595' />
             </Link>
 
-            <Link to={'/profile'} className='flex justify-center items-center'>
+            <Link to={'#'} className='flex justify-center items-center'>
               <IconUser size={42} color='#959595' />
             </Link>
 

@@ -1,15 +1,34 @@
 import { IconSearch } from '@tabler/icons'
 import React, { useState } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import toRupiah from '../../../constants/fungsi.js'
-import data from './../../../constants/data.js'
+// import data from './../../../constants/data.js'
 
-const CariUsaha = () => {
+const CariUsaha = ({ data }) => {
   const [search, setSearch] = useState('')
+  // const [data, setData] = useState(usaha)
 
-  const handleSearch = (e) => {
-    e.preventDefault()
-    console.log(search)
+  // const handleSearch = (dt, search) => {
+  //   e.preventDefault()
+
+  //   const newData = data?.filter(
+  //     (d) =>
+  //       handleSearch(d.namaProduk, search) ||
+  //       handleSearch(d.namaPerusahaan, search)
+  //   )
+  //   setData(newData)
+  // }
+
+  const hitungTerkumpul = (pendanaan) => {
+    let danaTerkumpul = 0
+    if (pendanaan?.length !== 0) {
+      pendanaan?.map((dana) => {
+        danaTerkumpul += dana.nominal
+      })
+    }
+
+    return danaTerkumpul
   }
   return (
     <div className='my-2 p-4 rounded-xl w-full'>
@@ -18,7 +37,7 @@ const CariUsaha = () => {
           Cari usaha untuk didanani
         </h2>
         <div className='w-full'>
-          <form action='#' onSubmit={handleSearch} className='flex gap-4'>
+          <form action='#' className='flex gap-4'>
             <input
               value={search}
               type='text'
@@ -36,35 +55,38 @@ const CariUsaha = () => {
         </div>
       </div>
       <div className='grid grid-cols-3 gap-8 my-6'>
-        {data.umkms.map((umkm) => (
+        {data?.map((umkm) => (
           <Link
-            to={`/investor/beri-pendanaan/${umkm.id}`}
+            to={`/investor/beri-pendanaan/${umkm._id}`}
             className='flex flex-col bg-white'
-            key={umkm.id}
+            key={umkm._id}
           >
             <img
-              src={`http://127.0.0.1:5173/assets/${umkm.gambar}`}
-              alt={umkm.gambar}
+              src={`http://localhost:5000/public/${umkm.images}`}
+              alt={umkm.images}
             />
             <div className='p-4  '>
-              <h3 className='text-xl font-medium'>{umkm.judul}</h3>
-              <p className='text-base font-light'>{umkm.pemilik}</p>
+              <h3 className='text-xl font-medium'>{umkm.namaProduk}</h3>
+              <p className='text-base font-light'>{umkm.namaPerusahaan}</p>
 
               <h4 className='mt-4'>Total kebutuhan dana :</h4>
-              <p>{toRupiah(umkm.totalKebutuhanDana)}</p>
+              <p>{toRupiah(umkm.kebutuhanDana)}</p>
 
               <div className='mt-4 bg-slate-600 h-3 relative'>
                 <div
                   className='absolute top-0 left-0 h-full bg-green-500'
                   style={{
                     width:
-                      (umkm.terkumpul / umkm.totalKebutuhanDana) * 100 + '%',
+                      (hitungTerkumpul(umkm.pendanaanId) / umkm.kebutuhanDana) *
+                        100 +
+                      '%',
                   }}
                 ></div>
               </div>
               <p>
-                {((umkm.terkumpul / umkm.totalKebutuhanDana) * 100).toFixed(0) +
-                  '%'}{' '}
+                {(
+                  hitungTerkumpul(umkm.pendanaanId) / umkm.kebutuhanDana
+                ).toFixed(0) + '%'}{' '}
                 Terkumpul
               </p>
             </div>

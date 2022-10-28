@@ -1,6 +1,8 @@
 import { IconHome, IconNotes, IconPackage } from '@tabler/icons'
+
 import React, { useEffect } from 'react'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
+
 import NavbarDashboard from '../navbarDashborad/NavbarDashboard'
 import Sidebar from '../sidebar/sidebar'
 import BeriPendanaan from './beriPendanaan/BeriPendanaan'
@@ -13,8 +15,11 @@ import axios from 'axios'
 
 // universal cookie
 import Cookies from 'universal-cookie'
+import Kontrak from './kontrak/Kontrak'
+import DetailPembayaran from './detailPembayaran/DetailPembayaran'
 
 const Investor = () => {
+  let res
   const cookies = new Cookies()
 
   // const navigate = useNavigate()
@@ -35,7 +40,8 @@ const Investor = () => {
     axios(configuration)
       .then((result) => {
         // assign the message in our result to the message we initialized above
-        console.log('result', result)
+        res = result
+        console.log('res', res)
       })
       .catch((error) => {
         window.location.href = '/'
@@ -74,6 +80,11 @@ const Investor = () => {
             <Route path='/transaksi' element={<Transaksi />} />
             <Route path='/beri-pendanaan/:id/*' element={<BeriPendanaan />} />
             <Route path='/detail-usaha/:id/*' element={<DetailUsaha />} />
+            <Route
+              path='/detail-pembayaran/:id'
+              element={<DetailPembayaran />}
+            />
+            <Route path='/kontrak/:id' element={<Kontrak />} />
           </Routes>
         </div>
       </div>
