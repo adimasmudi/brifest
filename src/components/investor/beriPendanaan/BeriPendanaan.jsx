@@ -26,8 +26,6 @@ const BeriPendanaan = () => {
 
   const umkm = getUmkm(id)
 
-  //   console.log(umkm)
-
   return (
     <div className='m-6'>
       <div className='flex flex-1 gap-6'>

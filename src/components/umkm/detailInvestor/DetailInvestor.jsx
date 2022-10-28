@@ -1,5 +1,5 @@
 import { IconArrowsTransferDown } from '@tabler/icons'
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import toRupiah from '../../../constants/fungsi'
 import data from './../../../constants/data'
@@ -14,7 +14,15 @@ const DetailInvestor = () => {
   }
   const listInvestor = getInvestor(id).investor
 
-  const [model, setModel] = useState(false)
+  const [modal, setModal] = useState(false)
+
+  const [investor, setInvestor] = useState({})
+
+  const handleTransfer = (id) => {
+    const index = listInvestor.findIndex((investor) => investor.id == id)
+    setInvestor(listInvestor[index])
+    setModal(true)
+  }
 
   return (
     <div>
@@ -40,7 +48,10 @@ const DetailInvestor = () => {
               <td>{toRupiah(investor.jumlahPendanaan)}</td>
               <td>{toRupiah(investor.totalDividen)}</td>
               <td>
-                <button className='flex flex-1 justify-center items-center bg-green-600 p-1 rounded-sm'>
+                <button
+                  className='flex flex-1 justify-center items-center bg-green-600 p-1 rounded-sm'
+                  onClick={handleTransfer.bind(this, investor.id)}
+                >
                   <IconArrowsTransferDown color='#ffffff' />
                 </button>
               </td>
@@ -54,7 +65,7 @@ const DetailInvestor = () => {
           modal ? 'bottom-0 right-0 block' : 'hidden'
         }`}
       >
-        <TransferDividen setModal={setModal} />
+        <TransferDividen setModal={setModal} data={investor} />
       </div>
     </div>
   )

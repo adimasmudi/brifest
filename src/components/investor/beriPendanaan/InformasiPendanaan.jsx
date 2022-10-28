@@ -35,7 +35,10 @@ const InformasiPendanaan = ({ umkm }) => {
           <Link to={'/'} className='py-2 px-8 bg-green-500'>
             Chat
           </Link>
-          <Link to={'/'} className='py-2 px-8 bg-green-500'>
+          <Link
+            to={`/investor/kontrak/${umkm.id}?saham=${lembarSaham}&jumlahPembyaran=${pendanaan}`}
+            className='py-2 px-8 bg-green-500'
+          >
             Beli
           </Link>
         </div>

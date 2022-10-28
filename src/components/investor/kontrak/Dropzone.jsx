@@ -25,9 +25,7 @@ function Dropzone({ open, accept, onDrop }) {
           {isDragActive ? (
             <p className='dropzone-content'>Release to drop the files here</p>
           ) : (
-            <p className='dropzone-content'>
-              Drag & drop some files here, or click to select files
-            </p>
+            <p className='dropzone-content'>Upload Tanda Tangan anda</p>
           )}
           <button
             type='button'

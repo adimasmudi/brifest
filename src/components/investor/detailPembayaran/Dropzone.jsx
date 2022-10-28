@@ -18,16 +18,14 @@ function Dropzone({ open, accept, onDrop }) {
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         <div
-          className={`mt-8 h-36 flex flex-col justify-center items-center text-center input-zone border border-dashed border-green-400 ${
+          className={`mt-2 h-36 flex flex-col justify-center items-center text-center input-zone border border-dashed border-green-400 ${
             isDragActive ? 'bg-slate-600' : ''
           }`}
         >
           {isDragActive ? (
-            <p className='dropzone-content'>Release to drop the files here</p>
+            <p className='dropzone-content'>Release to drop </p>
           ) : (
-            <p className='dropzone-content'>
-              Drag & drop some files here, or click to select files
-            </p>
+            <p className='dropzone-content'>Drag & Drop your file</p>
           )}
           <button
             type='button'

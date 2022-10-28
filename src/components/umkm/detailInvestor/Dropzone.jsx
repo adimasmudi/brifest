@@ -18,7 +18,7 @@ function Dropzone({ open, accept, onDrop }) {
       <div {...getRootProps({ className: 'dropzone' })}>
         <input {...getInputProps()} />
         <div
-          className={`mt-8 h-36 flex flex-col justify-center items-center text-center input-zone border border-dashed border-green-400 ${
+          className={`h-36 flex flex-col justify-center items-center text-center input-zone border border-dashed border-green-400 ${
             isDragActive ? 'bg-slate-600' : ''
           }`}
         >
