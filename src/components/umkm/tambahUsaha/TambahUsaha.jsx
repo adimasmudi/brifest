@@ -39,7 +39,7 @@ const TambahUsaha = () => {
   // set configuration
   const configuration = {
     method: 'post',
-    url: 'http://localhost:5000/umkm/addUsaha',
+    url: 'https://guarded-wildwood-83398.herokuapp.com/umkm/addUsaha',
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -73,13 +73,17 @@ const TambahUsaha = () => {
     formData.append('mediaSosial', mediaSosial)
     formData.append('images', images[0], images[0].name)
     axios
-      .post('http://localhost:5000/umkm/addUsaha', formData, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        'https://guarded-wildwood-83398.herokuapp.com/umkm/addUsaha',
+        formData,
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((_) => {
         window.location.href = '/umkm/dashboard'
       })

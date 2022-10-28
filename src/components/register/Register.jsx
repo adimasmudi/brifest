@@ -22,7 +22,7 @@ const Register = () => {
   // set configuration
   const configuration = {
     method: 'post',
-    url: 'http://localhost:5000/register',
+    url: 'https://guarded-wildwood-83398.herokuapp.com/register',
     data: {
       namaUser,
       NPWP,

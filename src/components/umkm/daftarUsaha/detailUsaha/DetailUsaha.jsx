@@ -30,7 +30,7 @@ const DetailUsaha = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/umkm/usaha/${id}`,
+      url: `https://guarded-wildwood-83398.herokuapp.com/umkm/usaha/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

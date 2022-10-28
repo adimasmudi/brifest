@@ -18,7 +18,7 @@ const Login = () => {
     e.preventDefault()
     axios({
       method: 'post',
-      url: 'http://localhost:5000/',
+      url: 'https://guarded-wildwood-83398.herokuapp.com/',
       data: {
         email,
         password,
