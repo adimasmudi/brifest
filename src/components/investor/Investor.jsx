@@ -11,6 +11,8 @@ import Transaksi from './transaksi/Transaksi'
 
 // universal cookie
 import Cookies from 'universal-cookie'
+import Kontrak from './kontrak/Kontrak'
+import DetailPembayaran from './detailPembayaran/DetailPembayaran'
 
 const Investor = () => {
   const cookies = new Cookies()
@@ -54,6 +56,11 @@ const Investor = () => {
             <Route path='/transaksi' element={<Transaksi />} />
             <Route path='/beri-pendanaan/:id/*' element={<BeriPendanaan />} />
             <Route path='/detail-usaha/:id/*' element={<DetailUsaha />} />
+            <Route
+              path='/detail-pembayaran/:id'
+              element={<DetailPembayaran />}
+            />
+            <Route path='/kontrak/:id' element={<Kontrak />} />
           </Routes>
         </div>
       </div>
