@@ -180,6 +180,7 @@ const daftarUsahaUmkm = [
         tanggalPendanaan: '20 januari 2018',
         jumlahPendanaan: 200000000,
         totalDividen: 250000,
+        saham: 20,
       },
       {
         id: 2,
@@ -187,6 +188,7 @@ const daftarUsahaUmkm = [
         tanggalPendanaan: '21 januari 2018',
         jumlahPendanaan: 60000000,
         totalDividen: 250000,
+        saham: 20,
       },
       {
         id: 3,
@@ -194,6 +196,7 @@ const daftarUsahaUmkm = [
         tanggalPendanaan: '22 januari 2018',
         jumlahPendanaan: 150000000,
         totalDividen: 250000,
+        saham: 20,
       },
     ],
   },
@@ -231,6 +234,7 @@ const daftarUsahaUmkm = [
         tanggalPendanaan: '20 januari 2018',
         jumlahPendanaan: 200000000,
         totalDividen: 250000,
+        saham: 20,
       },
       {
         id: 2,
@@ -238,6 +242,7 @@ const daftarUsahaUmkm = [
         tanggalPendanaan: '21 januari 2018',
         jumlahPendanaan: 60000000,
         totalDividen: 250000,
+        saham: 20,
       },
       {
         id: 3,
@@ -245,6 +250,7 @@ const daftarUsahaUmkm = [
         tanggalPendanaan: '22 januari 2018',
         jumlahPendanaan: 150000000,
         totalDividen: 250000,
+        saham: 20,
       },
     ],
   },
