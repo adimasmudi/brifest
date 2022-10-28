@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CariUsaha from './CariUsaha'
 import Portofolio from './Portofolio'
+import axios from 'axios'
+
+// universal cookie
+import Cookies from 'universal-cookie'
 
 const Dashboard = () => {
   return (

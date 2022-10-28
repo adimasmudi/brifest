@@ -1,11 +1,38 @@
 import { IconTarget } from '@tabler/icons'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import toRupiah from '../../../constants/fungsi'
 import data from './../../../constants/data'
 
+import axios from 'axios'
+
+// universal cookie
+import Cookies from 'universal-cookie'
+
 const DaftarUsaha = () => {
-  const listUsaha = data.daftarUsahaUmkm
+  const [listUsaha, setListUsaha] = useState([])
+  const cookies = new Cookies()
+
+  // const navigate = useNavigate()
+  const token = cookies.get('TOKEN')
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/umkm/usahaUser`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((result) => {
+        setListUsaha(result.data)
+      })
+      .catch((error) => {
+        console.log(error)
+        // console.log(error)
+      })
+  }, [])
+
   return (
     <div>
       <h1 className='text-2xl font-semibold'>List Usaha</h1>
@@ -23,15 +50,15 @@ const DaftarUsaha = () => {
         </thead>
         <tbody>
           {listUsaha.map((usaha, i) => (
-            <tr key={usaha.id} className='border-b-2 border-b-green-400'>
+            <tr key={usaha._id} className='border-b-2 border-b-green-400'>
               <td className='py-3'>{++i}</td>
               <td>{usaha.namaProduk}</td>
               <td>{usaha.namaPerusahaan}</td>
-              <td>{toRupiah(usaha.kebuthanDana)}</td>
-              <td>{usaha.danaTerkumpul}%</td>
+              <td>{toRupiah(usaha.kebutuhanDana)}</td>
+              <td>{0}%</td>
               <td>
                 <Link
-                  to={`/umkm/detail-usaha/${usaha.id}`}
+                  to={`/umkm/detail-usaha/${usaha._id}`}
                   className='flex flex-1 justify-center items-center'
                 >
                   <IconTarget color='#5DD95D' />

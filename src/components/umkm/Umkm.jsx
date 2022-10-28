@@ -1,5 +1,5 @@
 import { IconHome, IconNotes, IconPackage, IconSquarePlus } from '@tabler/icons'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import NavbarDashboard from '../navbarDashborad/NavbarDashboard'
 import Sidebar from '../sidebar/sidebar'
@@ -10,7 +10,40 @@ import DetailInvestor from './detailInvestor/DetailInvestor'
 import TambahUsaha from './tambahUsaha/TambahUsaha'
 import Transaksi from './transaksi/Transaksi'
 
+import axios from 'axios'
+
+// universal cookie
+import Cookies from 'universal-cookie'
+
 const Umkm = () => {
+  const cookies = new Cookies()
+
+  // const navigate = useNavigate()
+  const token = cookies.get('TOKEN')
+
+  // useEffect automatically executes once the page is fully loaded
+  useEffect(() => {
+    // set configurations for the API call here
+    const configuration = {
+      method: 'get',
+      url: 'http://localhost:5000/umkm/dashboard',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+
+    // make the API call
+    axios(configuration)
+      .then((result) => {
+        // assign the message in our result to the message we initialized above
+
+        console.log(result.data.user)
+      })
+      .catch((error) => {
+        window.location.href = '/'
+      })
+  }, [])
+
   const menus = [
     {
       name: 'dashboard',

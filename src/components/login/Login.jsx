@@ -34,7 +34,7 @@ const Login = () => {
         navigate(`/${result.data.userRole}/dashboard`)
       })
       .catch((error) => {
-        setError(result.data.message)
+        setError(error)
       })
   }
 

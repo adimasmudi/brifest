@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [penghasilan, setPenghasilan] = useState('')
   const [noTelepon, setNoTelepon] = useState('')
-  const [statusNikah, setStatusNikah] = useState('')
+  const [statusNikah, setStatusNikah] = useState('belum menikah')
   const [NIK, setNIK] = useState('')
   const [namaIbuKandung, setNamaIbuKandung] = useState('')
   const [alamat, setAlamat] = useState('')
@@ -257,7 +257,7 @@ const Register = () => {
                   type='radio'
                   name='role'
                   id='pelaku'
-                  value={'pelaku umkm'}
+                  value={'umkm'}
                   onChange={(e) => setRole(e.target.value)}
                 />{' '}
                 <label htmlFor='pelaku'>Pelaku UMKM</label>

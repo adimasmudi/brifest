@@ -1,16 +1,52 @@
 import { IconX } from '@tabler/icons'
 import React, { useState } from 'react'
 
-const RekapData = ({ setModal }) => {
+import axios from 'axios'
+// universal cookie
+import Cookies from 'universal-cookie'
+
+const RekapData = ({ setModal, usahaId }) => {
   const [waktu, setWaktu] = useState('')
   const [judul, setJudul] = useState('')
-  const [tipe, setTipe] = useState('')
+  const [tipe, setTipe] = useState('pemasukan')
   const [jumlah, setJumlah] = useState(0)
   const [catatan, setCatatan] = useState('')
 
+  const cookies = new Cookies()
+
+  // const navigate = useNavigate()
+  const token = cookies.get('TOKEN')
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(waktu, judul, tipe, jumlah, catatan)
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:5000/umkm/addRekapanDana',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        tanggal: waktu,
+        judul,
+        tipe,
+        jumlah,
+        catatan,
+        usahaId,
+      },
+    })
+      .then((result) => {
+        // console.log(Object.entries(result.data).length)
+        setJudul('')
+        setWaktu('')
+        setJumlah(0)
+        setCatatan('')
+        setModal(false)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 
   return (
@@ -30,6 +66,7 @@ const RekapData = ({ setModal }) => {
             <input
               type='datetime-local'
               id='waktu'
+              name='tanggal'
               onChange={(e) => setWaktu(e.target.value)}
               className='w-full bg-green-200 px-2 border border-green-500 outline-none rounded-sm'
             />
@@ -42,6 +79,7 @@ const RekapData = ({ setModal }) => {
               type='text'
               id='judul'
               value={judul}
+              name='judul'
               onChange={(e) => setJudul(e.target.value)}
               className='w-full bg-green-200 px-2 border border-green-500 outline-none rounded-sm'
             />
@@ -69,6 +107,7 @@ const RekapData = ({ setModal }) => {
               type='number'
               id='jumlah'
               value={jumlah}
+              name='jumlah'
               onChange={(e) => setJumlah(e.target.value)}
               className='w-full bg-green-200 px-2 border border-green-500 outline-none rounded-sm'
             />
@@ -89,7 +128,7 @@ const RekapData = ({ setModal }) => {
           </div>
         </div>
         <div className='flex justify-end bg-slate-300 p-4 border-t border-t-slate-400'>
-          <button>Subm</button>
+          <button>Submit</button>
         </div>
       </form>
     </div>

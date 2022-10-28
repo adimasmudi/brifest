@@ -11,8 +11,6 @@ const Riwayat = ({ listRiwayat }) => {
       </h2>
 
       <div className='p-4 '>
-        <div className=''>asd</div>
-
         <table>
           <thead>
             <tr>
@@ -26,10 +24,20 @@ const Riwayat = ({ listRiwayat }) => {
           </thead>
           <tbody className='bg-green-200'>
             {listRiwayat.map((riwayat) => (
-              <tr key={riwayat.id}>
-                <td className='text-sm'>{riwayat.tanggal}</td>
-                <td className='text-sm text-center'>{riwayat.jam}</td>
-                <td className='text-sm text-left'>{riwayat.judulPencatatan}</td>
+              <tr key={riwayat._id}>
+                <td className='text-sm'>{`${new Date(
+                  riwayat.tanggal
+                ).toLocaleDateString('id-ID', { weekday: 'long' })} ${new Date(
+                  riwayat.tanggal
+                ).getDate()}-${new Date(riwayat.tanggal).getMonth()}-${new Date(
+                  riwayat.tanggal
+                ).getFullYear()}`}</td>
+                <td className='text-sm text-center'>
+                  {`${new Date(riwayat.tanggal).getHours()}:${new Date(
+                    riwayat.tanggal
+                  ).getMinutes()}`}
+                </td>
+                <td className='text-sm text-left'>{riwayat.judul}</td>
                 <td className='text-sm text-center'>
                   {toRupiah(riwayat.jumlah)}
                 </td>
