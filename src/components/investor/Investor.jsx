@@ -30,7 +30,7 @@ const Investor = () => {
     // set configurations for the API call here
     const configuration = {
       method: 'get',
-      url: 'https://guarded-wildwood-83398.herokuapp.com/investor/dashboard',
+      url: 'https://brifest-api.herokuapp.com/investor/dashboard',
       headers: {
         Authorization: `Bearer ${token}`,
       },

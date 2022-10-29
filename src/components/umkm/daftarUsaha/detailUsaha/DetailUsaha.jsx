@@ -30,7 +30,7 @@ const DetailUsaha = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://guarded-wildwood-83398.herokuapp.com/umkm/usaha/${id}`,
+      url: `https://brifest-api.herokuapp.com/umkm/usaha/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

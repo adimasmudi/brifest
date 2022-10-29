@@ -27,7 +27,7 @@ const DetailPembayaran = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://guarded-wildwood-83398.herokuapp.com/investor/viewFormBayar/${id}`,
+      url: `https://brifest-api.herokuapp.com/investor/viewFormBayar/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -22,7 +22,7 @@ const BeriPendanaan = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://guarded-wildwood-83398.herokuapp.com/investor/detailUsaha/${id}`,
+      url: `https://brifest-api.herokuapp.com/investor/detailUsaha/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -53,7 +53,7 @@ const BeriPendanaan = () => {
       <div className='flex flex-1 gap-6'>
         <div>
           <img
-            src={`https://guarded-wildwood-83398.herokuapp.com/public/${usaha.images}`}
+            src={`https://brifest-api.herokuapp.com/public/${usaha.images}`}
             alt={usaha.images}
           />
         </div>

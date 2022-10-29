@@ -22,7 +22,7 @@ const RekapData = ({ setModal, usahaId }) => {
 
     axios({
       method: 'post',
-      url: 'https://guarded-wildwood-83398.herokuapp.com/umkm/addRekapanDana',
+      url: 'https://brifest-api.herokuapp.com/umkm/addRekapanDana',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,

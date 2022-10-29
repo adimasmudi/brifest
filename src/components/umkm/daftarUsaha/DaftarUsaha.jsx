@@ -19,7 +19,7 @@ const DaftarUsaha = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://guarded-wildwood-83398.herokuapp.com/umkm/usahaUser`,
+      url: `https://brifest-api.herokuapp.com/umkm/usahaUser`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

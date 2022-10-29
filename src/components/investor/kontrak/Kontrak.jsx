@@ -29,7 +29,7 @@ const Kontrak = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://guarded-wildwood-83398.herokuapp.com/investor/viewFormPerjanjian/${id}`,
+      url: `https://brifest-api.herokuapp.com/investor/viewFormPerjanjian/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -66,7 +66,7 @@ const Kontrak = () => {
 
     axios
       .post(
-        'https://guarded-wildwood-83398.herokuapp.com/investor/addPerjanjianInvestor',
+        'https://brifest-api.herokuapp.com/investor/addPerjanjianInvestor',
         formData,
         {
           headers: {

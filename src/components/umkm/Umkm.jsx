@@ -26,7 +26,7 @@ const Umkm = () => {
     // set configurations for the API call here
     const configuration = {
       method: 'get',
-      url: 'https://guarded-wildwood-83398.herokuapp.com/umkm/dashboard',
+      url: 'https://brifest-api.herokuapp.com/umkm/dashboard',
       headers: {
         Authorization: `Bearer ${token}`,
       },

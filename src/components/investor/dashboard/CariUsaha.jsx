@@ -62,7 +62,7 @@ const CariUsaha = ({ data }) => {
             key={umkm._id}
           >
             <img
-              src={`https://guarded-wildwood-83398.herokuapp.com/public/${umkm.images}`}
+              src={`https://brifest-api.herokuapp.com/public/${umkm.images}`}
               alt={umkm.images}
             />
             <div className='p-4  '>

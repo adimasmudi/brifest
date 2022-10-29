@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault()
     axios({
       method: 'post',
-      url: 'https://guarded-wildwood-83398.herokuapp.com/',
+      url: 'https://brifest-api.herokuapp.com/',
       data: {
         email,
         password,
