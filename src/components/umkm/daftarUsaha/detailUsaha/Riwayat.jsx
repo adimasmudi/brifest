@@ -41,7 +41,15 @@ const Riwayat = ({ listRiwayat }) => {
                 <td className='text-sm text-center'>
                   {toRupiah(riwayat.jumlah)}
                 </td>
-                <td className='text-sm'>{riwayat.tipe}</td>
+                <td
+                  className={`text-sm ${
+                    riwayat.tipe === 'pemasukan'
+                      ? 'text-blue-500'
+                      : 'text-red-500'
+                  }`}
+                >
+                  {riwayat.tipe}
+                </td>
                 <td className='text-sm flex flex-1 justify-center gap-3'>
                   <Link to={'#'}>
                     <IconEdit color='#41A958' />

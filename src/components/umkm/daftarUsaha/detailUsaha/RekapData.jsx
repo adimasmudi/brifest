@@ -11,6 +11,7 @@ const RekapData = ({ setModal, usahaId }) => {
   const [tipe, setTipe] = useState('pemasukan')
   const [jumlah, setJumlah] = useState(0)
   const [catatan, setCatatan] = useState('')
+  const [error, setError] = useState('')
 
   const cookies = new Cookies()
 
@@ -22,7 +23,7 @@ const RekapData = ({ setModal, usahaId }) => {
 
     axios({
       method: 'post',
-      url: 'https://brifest-api.herokuapp.com/umkm/addRekapanDana',
+      url: 'http://localhost:5000/umkm/addRekapanDana',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -38,6 +39,7 @@ const RekapData = ({ setModal, usahaId }) => {
     })
       .then((result) => {
         // console.log(Object.entries(result.data).length)
+        console.log(result)
         setJudul('')
         setWaktu('')
         setJumlah(0)
@@ -45,7 +47,7 @@ const RekapData = ({ setModal, usahaId }) => {
         setModal(false)
       })
       .catch((error) => {
-        console.log(error)
+        setError(error)
       })
   }
 

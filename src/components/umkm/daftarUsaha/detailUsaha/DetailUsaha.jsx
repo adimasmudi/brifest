@@ -14,18 +14,12 @@ const DetailUsaha = () => {
   const [detailUsaha, setDetailUsaha] = useState([])
   const [rekapan, setRekapan] = useState([])
   const { id } = useParams()
-  // const getUsaha = (id) => {
-  //   const index = data.daftarUsahaUmkm.findIndex((usaha) => usaha.id == id)
-  //   return data.daftarUsahaUmkm[index]
-  // }
-  // const usaha = getUsaha(id)
+  const [error, setError] = useState('')
 
   const cookies = new Cookies()
 
   // const navigate = useNavigate()
   const token = cookies.get('TOKEN')
-
-  console.log(id)
 
   useEffect(() => {
     axios({
@@ -40,13 +34,14 @@ const DetailUsaha = () => {
         setRekapan(result.data.rekapan)
       })
       .catch((error) => {
-        console.log(error)
+        result.data.message
+          ? setError(result.data.message)
+          : setError('Internal Server Error')
         // console.log(error)
       })
   }, [rekapan])
 
   const [modal, setModal] = useState(false)
-  console.log(detailUsaha)
 
   const hitungLaba = (rekapan) => {
     let laba = 0
@@ -82,7 +77,7 @@ const DetailUsaha = () => {
               {detailUsaha.pendanaanId?.length}
             </h3>
             <Link
-              to={`/umkm/detail-usaha/1/detail-investor`}
+              to={`/umkm/detail-usaha/${detailUsaha._id}/detail-investor`}
               className='bg-green-400 p-1 px-3 rounded-md text-white'
             >
               Detail Investor

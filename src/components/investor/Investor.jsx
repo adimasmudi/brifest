@@ -41,7 +41,7 @@ const Investor = () => {
       .then((result) => {
         // assign the message in our result to the message we initialized above
         res = result
-        console.log('res', res)
+        // console.log('res', res)
       })
       .catch((error) => {
         window.location.href = '/'

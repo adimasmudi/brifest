@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Detail = ({ umkm }) => {
-  console.log('from details', umkm)
+  // console.log('from details', umkm)
   return (
     <div>
       <h2 className='font-semibold text-2xl'>Pembayaran</h2>

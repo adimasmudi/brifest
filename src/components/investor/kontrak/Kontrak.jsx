@@ -77,11 +77,8 @@ const Kontrak = () => {
         }
       )
       .then((_) => {
-        window.location.href = `/investor/detail-pembayaran/${usaha._id}/saham=${saham}&jumlahPembayaran=${jumlahPembyaran}`
+        window.location.href = `/investor/detail-pembayaran/${usaha._id}`
       })
-    // setTimeout(() => {
-    //   window.location.href = `/investor/detail-pembayarainvestoram=${saham}&jumlahPembayaran=${jumlahPembyaran}`
-    // }, 5000)
   }
 
   return (

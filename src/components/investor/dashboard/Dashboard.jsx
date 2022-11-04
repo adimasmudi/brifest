@@ -9,6 +9,7 @@ import Cookies from 'universal-cookie'
 const Dashboard = () => {
   const [usaha, setUsaha] = useState([])
   const [pendanaan, setPendanaan] = useState([])
+  const [user, setUser] = useState('')
 
   const cookies = new Cookies()
 
@@ -24,6 +25,8 @@ const Dashboard = () => {
       },
     })
       .then((result) => {
+        console.log('investor', result)
+        setUser(result.data.user.userEmail.split('@')[0])
         setUsaha(result.data.usaha)
         setPendanaan(result.data.dana)
       })
@@ -34,8 +37,8 @@ const Dashboard = () => {
   }, [])
   return (
     <div>
-      <h1 className='font-semibold text-4xl'>Dashboard</h1>
-      <Portofolio />
+      <h1 className='font-semibold text-4xl'>Dashboard, {user}</h1>
+      <Portofolio dana={pendanaan} />
       {usaha !== [] && <CariUsaha data={usaha} />}
     </div>
   )

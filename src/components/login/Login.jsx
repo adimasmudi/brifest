@@ -24,16 +24,18 @@ const Login = () => {
       },
     })
       .then((result) => {
-        console.log(result)
+        // console.log(result)
         // set the cookie
         cookies.set('TOKEN', result.data.token, {
           path: '/',
         })
 
-        navigate(`/${result.data.userRole}/dashboard`)
+        result.data.userRole
+          ? navigate(`/${result.data.userRole}/dashboard`)
+          : setError('Internal Server Error')
       })
       .catch((error) => {
-        setError(error)
+        setError(result.data.message)
       })
   }
 
@@ -73,6 +75,13 @@ const Login = () => {
                 className='text-sm px-2 py-1 border-[1px] border-[#A1E496] rounded-[5px] focus:ring-green-200 focus:ring-1 outline-none placeholder:text-sm placeholder:text-gray-400'
               />
             </div>
+            {error !== '' ? (
+              <div className='error'>
+                <p className='text-red-400 text-sm'>{error}</p>
+              </div>
+            ) : (
+              ''
+            )}
             <div className='flex flex-row-reverse my-4'>
               <Link
                 to={'/forgot-password'}

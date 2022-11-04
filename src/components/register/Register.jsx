@@ -46,7 +46,9 @@ const Register = () => {
           if (Object.entries(result.data).length >= 2) {
             navigate('/')
           } else {
-            setError(result.data.message)
+            result.data.message
+              ? setError(result.data.message)
+              : setError('Internal Server Error')
           }
           // console.log(Object.entries(result.data).length)
           // console.log(result)
@@ -290,6 +292,13 @@ const Register = () => {
               data maka saya siap menerima konsekuensinya
             </label>
           </div>
+          {error !== '' ? (
+            <div className='error'>
+              <p className='text-red-400 text-sm'>{error}</p>
+            </div>
+          ) : (
+            ''
+          )}
           <div className='flex flex-row-reverse'>
             <button
               type='submit'
