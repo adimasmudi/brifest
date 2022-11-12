@@ -57,7 +57,7 @@ const Dashboard = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/umkm/dashboard`,
+      url: `https://brifest-api.herokuapp.com/umkm/dashboard`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -17,7 +17,7 @@ const DetailTransaksi = ({ setModal, data }) => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/umkm/getInvestor/${data._id}`,
+      url: `https://brifest-api.herokuapp.com/umkm/getInvestor/${data._id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

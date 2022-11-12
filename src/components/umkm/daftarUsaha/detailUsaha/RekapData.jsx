@@ -23,7 +23,7 @@ const RekapData = ({ setModal, usahaId }) => {
 
     axios({
       method: 'post',
-      url: 'http://localhost:5000/umkm/addRekapanDana',
+      url: 'https://brifest-api.herokuapp.com/umkm/addRekapanDana',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,

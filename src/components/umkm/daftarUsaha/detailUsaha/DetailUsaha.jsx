@@ -25,7 +25,7 @@ const DetailUsaha = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/umkm/usaha/${id}`,
+      url: `https://brifest-api.herokuapp.com/umkm/usaha/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -19,7 +19,7 @@ const Riwayat = ({ listRiwayat }) => {
   const deleteRekapan = (id) => {
     axios({
       method: 'delete',
-      url: `http://localhost:5000/umkm/deleteRekapan/${id}`,
+      url: `https://brifest-api.herokuapp.com/umkm/deleteRekapan/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

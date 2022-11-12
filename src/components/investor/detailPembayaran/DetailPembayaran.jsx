@@ -32,7 +32,7 @@ const DetailPembayaran = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/investor/viewFormBayar/${id}`,
+      url: `https://brifest-api.herokuapp.com/investor/viewFormBayar/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -69,7 +69,7 @@ const DetailPembayaran = () => {
 
     // axios({
     //   method: 'post',
-    //   url: `http://localhost:5000/investor/addPendanaan`,
+    //   url: `https://brifest-api.herokuapp.com/investor/addPendanaan`,
     //   headers: {
     //     Authorization: `Bearer ${token}`,
     //   },
@@ -89,13 +89,17 @@ const DetailPembayaran = () => {
     console.log(images)
 
     axios
-      .post(`http://localhost:5000/investor/addPendanaan`, formData, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        `https://brifest-api.herokuapp.com/investor/addPendanaan`,
+        formData,
+        {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'multipart/form-data',
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .catch((err) => {
         console.log('error dari pembayaran', err)
       })

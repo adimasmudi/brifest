@@ -25,7 +25,7 @@ const Transaksi = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/umkm/allTransaksi`,
+      url: `https://brifest-api.herokuapp.com/umkm/allTransaksi`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

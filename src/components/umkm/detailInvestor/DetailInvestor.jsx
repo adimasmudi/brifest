@@ -21,7 +21,7 @@ const DetailInvestor = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://localhost:5000/umkm/viewListInvestor/${id}`,
+      url: `https://brifest-api.herokuapp.com/umkm/viewListInvestor/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

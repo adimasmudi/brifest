@@ -27,7 +27,7 @@ const NavbarDashboard = () => {
   //   // sisi umkm
   //   axios({
   //     method: 'get',
-  //     url: `http://localhost:5000/umkm/getPengajuanPerjanjian`,
+  //     url: `https://brifest-api.herokuapp.com/umkm/getPengajuanPerjanjian`,
   //     headers: {
   //       Authorization: `Bearer ${token}`,
   //     },
