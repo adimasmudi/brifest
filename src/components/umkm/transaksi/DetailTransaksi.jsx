@@ -70,7 +70,7 @@ const DetailTransaksi = ({ setModal, data }) => {
         </button>
       </div>
       <div className='flex flex-col items-start gap-0 bg-white p-4 border-b border-b-slate-400'>
-        <h1 className='text-xl font-medium'># {data.id}</h1>
+        <h1 className='text-xl font-medium'># {data._id}</h1>
         <p className='text-sm'>{data.namaUsaha}</p>
       </div>
       <form action=''>
