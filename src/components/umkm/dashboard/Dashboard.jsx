@@ -20,6 +20,40 @@ const Dashboard = () => {
   // const navigate = useNavigate()
   const token = cookies.get('TOKEN')
 
+  const countTotalPendanaan = (umkm) => {
+    let totalDana = 0
+    for (let i of umkm) {
+      for (let j of i.pendanaanId) {
+        totalDana += j.nominal
+      }
+    }
+
+    setTotalPendanaan(totalDana)
+  }
+
+  const countTotalInvestor = (usaha) => {
+    let totalInvestor = 0
+    for (let i of usaha) {
+      totalInvestor += i.pendanaanId.length
+    }
+
+    setTotalInvestor(totalInvestor)
+  }
+
+  const countLaba = (usaha) => {
+    const labArr = []
+    for (let i of usaha) {
+      i.rekapanId.map((data) => {
+        data.tipe === 'pemasukan'
+          ? labArr.push(data.jumlah)
+          : labArr.push(-data.jumlah)
+      })
+    }
+
+    const labaTotal = labArr.reduce((partial, a) => partial + a, 0)
+    setLaba(labaTotal)
+  }
+
   useEffect(() => {
     axios({
       method: 'get',
@@ -29,26 +63,11 @@ const Dashboard = () => {
       },
     })
       .then((result) => {
-        console.log(result.data[0])
-        setUser(result.data.usaha[0].userId.namaUser)
-        setTotalInvestor(result.data.usaha[0].pendanaanId.length)
-        // const sum = result.data.usaha[0].pendanaanId
-        //   ? [...result.data.usaha[0].pendanaanId.nominal].reduce(
-        //       (partialSum, a) => partialSum + a,
-        //       0
-        //     )
-        //   : 0
-
-        const labArr = []
-        result.data.rekapan?.map((data) => {
-          data.tipe === 'pemasukan'
-            ? labArr.push(data.jumlah)
-            : labArr.push(-data.jumlah)
-        })
-
-        const labaTotal = labArr.reduce((partial, a) => partial + a, 0)
-        setLaba(labaTotal)
-        setTotalPendanaan(0)
+        console.log('umkm', result)
+        setUser(result.data.user.userEmail.split('@')[0])
+        countTotalInvestor(result.data.usaha)
+        countTotalPendanaan(result.data.usaha)
+        countLaba(result.data.usaha)
       })
       .catch((error) => {
         console.log(error)
@@ -58,7 +77,6 @@ const Dashboard = () => {
   return (
     <div>
       <h1 className='font-semibold text-4xl'>Dashboard, {user}</h1>
-
       <div className='grid grid-cols-3 gap-8 mt-4'>
         <div className='px-4 py-8 flex gap-4 bg-white rounded-lg border-green-400 border'>
           <div className='bg-green-200 flex justify-center items-center p-4 rounded-md border-green-400 border'>

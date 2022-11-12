@@ -19,7 +19,7 @@ const Dashboard = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://brifest-api.herokuapp.com/investor/dashboard`,
+      url: `http://localhost:5000/investor/dashboard`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -39,7 +39,7 @@ const Dashboard = () => {
     <div>
       <h1 className='font-semibold text-4xl'>Dashboard, {user}</h1>
       <Portofolio dana={pendanaan} />
-      {usaha !== [] && <CariUsaha data={usaha} />}
+      {usaha !== [] && <CariUsaha data={usaha} dana={pendanaan} />}
     </div>
   )
 }

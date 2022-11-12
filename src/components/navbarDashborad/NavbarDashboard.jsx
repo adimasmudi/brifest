@@ -21,24 +21,24 @@ const NavbarDashboard = () => {
   // const navigate = useNavigate()
   const token = cookies.get('TOKEN')
 
-  useEffect(() => {
-    // sisi investor
+  // useEffect(() => {
+  //   // sisi investor
 
-    // sisi umkm
-    axios({
-      method: 'get',
-      url: `http://localhost:5000/umkm/getPengajuanPerjanjian`,
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((result) => {
-        console.log(result)
-      })
-      .catch((error) => {
-        setError(error)
-      })
-  }, [])
+  //   // sisi umkm
+  //   axios({
+  //     method: 'get',
+  //     url: `http://localhost:5000/umkm/getPengajuanPerjanjian`,
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then((result) => {
+  //       console.log(result)
+  //     })
+  //     .catch((error) => {
+  //       setError(error)
+  //     })
+  // }, [])
 
   const navigate = useNavigate()
   const logout = () => {

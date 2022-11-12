@@ -13,6 +13,7 @@ import Cookies from 'universal-cookie'
 const DetailUsaha = () => {
   const [detailUsaha, setDetailUsaha] = useState([])
   const [rekapan, setRekapan] = useState([])
+  const [danaTerkumpul, setDanaTerkumpul] = useState([])
   const { id } = useParams()
   const [error, setError] = useState('')
 
@@ -24,14 +25,16 @@ const DetailUsaha = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://brifest-api.herokuapp.com/umkm/usaha/${id}`,
+      url: `http://localhost:5000/umkm/usaha/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((result) => {
+        console.log('result detail', result)
         setDetailUsaha(result.data.usaha)
-        setRekapan(result.data.rekapan)
+        setRekapan(result.data.usaha.rekapanId)
+        setDanaTerkumpul(result.data.usaha.pendanaanId)
       })
       .catch((error) => {
         result.data.message
@@ -50,6 +53,16 @@ const DetailUsaha = () => {
     })
 
     return laba
+  }
+
+  const hitungDanaTerkumpul = (dana) => {
+    console.log('dana', dana)
+    let totalDana = 0
+    for (let i of dana) {
+      totalDana += i.nominal
+    }
+
+    return totalDana
   }
 
   return (
@@ -102,9 +115,7 @@ const DetailUsaha = () => {
           <div>
             <p className='font-medium'>Dana terkumpul</p>
             <h3 className='font-semibold text-lg'>
-              {detailUsaha.pendanaanId?.length === 0
-                ? 0
-                : toRupiah(detailUsaha.danaTerkumpul)}
+              {toRupiah(hitungDanaTerkumpul(danaTerkumpul))}
             </h3>
           </div>
         </div>

@@ -1,9 +1,37 @@
 import { IconEdit, IconTrash } from '@tabler/icons'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import toRupiah from '../../../../constants/fungsi'
 
+import axios from 'axios'
+
+// universal cookie
+import Cookies from 'universal-cookie'
+
 const Riwayat = ({ listRiwayat }) => {
+  const [idRekapan, setIdRekapan] = useState('')
+
+  const cookies = new Cookies()
+
+  // const navigate = useNavigate()
+  const token = cookies.get('TOKEN')
+
+  const deleteRekapan = (id) => {
+    axios({
+      method: 'delete',
+      url: `http://localhost:5000/umkm/deleteRekapan/${id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((result) => {
+        console.log(result)
+      })
+      .catch((error) => {
+        console.log(error)
+        // console.log(error)
+      })
+  }
   return (
     <div className='mt-8 border-2 border-green-400 bg-white rounded-lg'>
       <h2 className='p-4 text-base font-medium border-b-2 border-b-black'>
@@ -51,12 +79,11 @@ const Riwayat = ({ listRiwayat }) => {
                   {riwayat.tipe}
                 </td>
                 <td className='text-sm flex flex-1 justify-center gap-3'>
-                  <Link to={'#'}>
-                    <IconEdit color='#41A958' />
-                  </Link>
-                  <Link to={'#'}>
-                    <IconTrash color='#FF0707' />
-                  </Link>
+                  <form action=''>
+                    <button onClick={() => deleteRekapan(riwayat._id)}>
+                      <IconTrash color='#FF0707' />
+                    </button>
+                  </form>
                 </td>
               </tr>
             ))}

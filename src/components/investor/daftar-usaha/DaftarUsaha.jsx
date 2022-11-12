@@ -27,6 +27,7 @@ const DaftarUsaha = () => {
       .then((result) => {
         setPendanaan(result.data.pendanaan)
         setPembayaran(result.data.pembayaran)
+        console.log('daftar usaha', result)
       })
       .catch((error) => {
         console.log(error)
@@ -51,16 +52,26 @@ const DaftarUsaha = () => {
             </tr>
           </thead>
           <tbody>
-            {data.listUsaha.map((usaha, i) => (
-              <tr key={usaha.id} className='border-b-2 border-b-green-400'>
+            {pendanaan.map((usaha, i) => (
+              <tr
+                key={usaha.usahaId._id}
+                className='border-b-2 border-b-green-400'
+              >
                 <td className='py-3'>{++i}</td>
-                <td>{usaha.nama}</td>
-                <td>{usaha.tanggal}</td>
-                <td>{toRupiah(usaha.jumlahPendanaan)}</td>
-                <td>{toRupiah(usaha.totalDividen)}</td>
+                <td>{usaha.usahaId.namaProduk}</td>
+                <td className='text-sm'>{`${new Date(
+                  usaha.tanggal
+                ).toLocaleDateString('id-ID', { weekday: 'long' })}, ${new Date(
+                  usaha.tanggal
+                ).getDate()}-${new Date(usaha.tanggal).getMonth()}-${new Date(
+                  usaha.tanggal
+                ).getFullYear()}`}</td>
+                <td>{toRupiah(usaha.nominal)}</td>
+                <td>{toRupiah(0)}</td>
                 <td>
                   <Link
-                    to={`/investor/detail-usaha/${usaha._id}`}
+                    // to={`/investor/detail-usaha/${usaha._id}`}
+                    to={'#'}
                     className='p-2 bg-green-400 font-medium rounded-lg'
                   >
                     Detail

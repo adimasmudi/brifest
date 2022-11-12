@@ -22,7 +22,7 @@ const Register = () => {
   // set configuration
   const configuration = {
     method: 'post',
-    url: 'https://brifest-api.herokuapp.com/register',
+    url: `http://localhost:5000/register`,
     data: {
       namaUser,
       NPWP,
@@ -54,7 +54,7 @@ const Register = () => {
           // console.log(result)
         })
         .catch((error) => {
-          setError(error.response.data.message)
+          setError(error.response?.data?.message ?? 'Internal Server Error')
           // console.log(error)
         })
     }

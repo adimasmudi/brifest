@@ -21,7 +21,7 @@ const DetailInvestor = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://brifest-api.herokuapp.com/umkm/viewListInvestor/${id}`,
+      url: `http://localhost:5000/umkm/viewListInvestor/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -47,6 +47,8 @@ const DetailInvestor = () => {
     return
   }
 
+  console.log(investor)
+
   return (
     <div>
       <h1 className='text-2xl font-semibold'>List Pemilik Investor</h1>
@@ -65,12 +67,19 @@ const DetailInvestor = () => {
 
           <tbody>
             {investor?.map((investor, i) => (
-              <tr key={investor.id} className='border-b-2 border-b-green-400'>
+              <tr
+                key={investor.userId._id}
+                className='border-b-2 border-b-green-400'
+              >
                 <td className='py-3'>{++i}</td>
-                <td>{investor.nama}</td>
-                <td>{investor.tanggalPendanaan}</td>
-                <td>{toRupiah(investor.jumlahPendanaan)}</td>
-                <td>{toRupiah(investor.totalDividen)}</td>
+                <td>{investor.userId.namaUser}</td>
+                <td>{`${new Date(investor.tanggal).toLocaleDateString('id-ID', {
+                  weekday: 'long',
+                })}, ${new Date(investor.tanggal).getDate()}-${new Date(
+                  investor.tanggal
+                ).getMonth()}-${new Date(investor.tanggal).getFullYear()}`}</td>
+                <td>{toRupiah(investor.nominal)}</td>
+                <td>{toRupiah(0)}</td>
                 <td>
                   <button
                     className='flex flex-1 justify-center items-center bg-green-600 p-1 rounded-sm'

@@ -39,7 +39,7 @@ const TambahUsaha = () => {
   // set configuration
   const configuration = {
     method: 'post',
-    url: 'https://brifest-api.herokuapp.com/umkm/addUsaha',
+    url: `http://localhost:5000/umkm/addUsaha`,
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -73,7 +73,7 @@ const TambahUsaha = () => {
     formData.append('mediaSosial', mediaSosial)
     formData.append('images', images[0], images[0].name)
     axios
-      .post('https://brifest-api.herokuapp.com/umkm/addUsaha', formData, {
+      .post(`http://localhost:5000/umkm/addUsaha`, formData, {
         headers: {
           Accept: 'application/json',
           'Content-Type': 'multipart/form-data',

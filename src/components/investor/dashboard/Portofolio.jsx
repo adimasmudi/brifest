@@ -3,9 +3,17 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import toRupiah from '../../../constants/fungsi'
 
-const Portofolio = ({ pendanaan }) => {
-  const [dana, setDana] = useState(0)
+const Portofolio = ({ dana }) => {
   const [dividen, setDividen] = useState(0)
+
+  const countDana = (pendanaan) => {
+    let pendanaanInvestor = 0
+    for (let i of pendanaan) {
+      pendanaanInvestor += i.nominal
+    }
+
+    return pendanaanInvestor
+  }
 
   return (
     <div className='my-2 p-4 rounded-xl bg-[#C9FEC9] w-full'>
@@ -15,7 +23,9 @@ const Portofolio = ({ pendanaan }) => {
           <IconWallet size={42} />
           <div>
             <p className='font-medium'>Total Pendanaan</p>
-            <h3 className='font-semibold text-2xl'>{toRupiah(dana)}</h3>
+            <h3 className='font-semibold text-2xl'>
+              {toRupiah(countDana(dana))}
+            </h3>
           </div>
         </div>
         <div className='flex gap-4 items-center'>

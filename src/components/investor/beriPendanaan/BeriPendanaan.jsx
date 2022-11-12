@@ -12,6 +12,7 @@ import Cookies from 'universal-cookie'
 
 const BeriPendanaan = () => {
   const [usaha, setUsaha] = useState([])
+  const [wa, setWa] = useState('')
   const { id } = useParams()
 
   const cookies = new Cookies()
@@ -22,13 +23,15 @@ const BeriPendanaan = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://brifest-api.herokuapp.com/investor/detailUsaha/${id}`,
+      url: `http://localhost:5000/investor/detailUsaha/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((result) => {
         setUsaha(result.data)
+        setWa(result.data.userId.noTelepon)
+        console.log('usaha', result.data)
       })
       .catch((error) => {
         console.log(error)
@@ -53,7 +56,7 @@ const BeriPendanaan = () => {
       <div className='flex flex-1 gap-6'>
         <div>
           <img
-            src={`https://brifest-api.herokuapp.com/public/${usaha.images}`}
+            src={`http://localhost:5000/public/${usaha.images}`}
             alt={usaha.images}
           />
         </div>
@@ -96,7 +99,10 @@ const BeriPendanaan = () => {
         </div>
         <div className='bg-white p-6'>
           <Routes>
-            <Route path='/' element={<InformasiPendanaan umkm={usaha} />} />
+            <Route
+              path='/'
+              element={<InformasiPendanaan umkm={usaha} wa={wa} />}
+            />
             <Route
               path='/informasi-pendanaan'
               element={<InformasiPendanaan umkm={usaha} />}

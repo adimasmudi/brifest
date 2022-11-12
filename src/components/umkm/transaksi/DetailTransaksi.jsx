@@ -1,8 +1,36 @@
 import { IconDownload, IconX } from '@tabler/icons'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import toRupiah from '../../../constants/fungsi'
 
+import axios from 'axios'
+// universal cookie
+import Cookies from 'universal-cookie'
+
 const DetailTransaksi = ({ setModal, data }) => {
+  const cookies = new Cookies()
+
+  // const navigate = useNavigate()
+  const token = cookies.get('TOKEN')
+
+  const [investor, setInvestor] = useState('')
+
+  useEffect(() => {
+    axios({
+      method: 'get',
+      url: `http://localhost:5000/umkm/getInvestor/${data._id}`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((result) => {
+        setInvestor(result.data.userId.namaUser)
+      })
+      .catch((error) => {
+        setError(error)
+      })
+  }, [data])
+
+  console.log('data from transaksi', data)
   const handleTerima = (e) => {
     e.preventDefault()
     console.log('terima')
@@ -49,19 +77,25 @@ const DetailTransaksi = ({ setModal, data }) => {
         <div className='bg-white p-4 border-b border-b-slate-400'>
           <div className='flex justify-between'>
             <span className='text-green-400'>Tanggal Pembelian</span>
-            <span>{data.tanggal}</span>
+            <span>
+              {`${new Date(data.tanggal).toLocaleDateString('id-ID', {
+                weekday: 'long',
+              })}, ${new Date(data.tanggal).getDate()}-${new Date(
+                data.tanggal
+              ).getMonth()}-${new Date(data.tanggal).getFullYear()}`}
+            </span>
           </div>
           <div className='flex justify-between'>
             <span className='text-green-400'>Nama Investor</span>
-            <span>{data.namaInvestor}</span>
+            <span>{investor}</span>
           </div>
           <div className='flex justify-between'>
             <span className='text-green-400'>Lembar Saham</span>
-            <span>{data.saham} lembar</span>
+            <span>{data.jumlahLembarSaham} lembar</span>
           </div>
           <div className='flex justify-between'>
             <span className='text-green-400'>Jumlah Dana</span>
-            <span>{toRupiah(data.jumlahDana)}</span>
+            <span>{toRupiah(data.nominal)}</span>
           </div>
           <div className='flex justify-between'>
             <span className='text-green-400'>Bukti pembayaran</span>

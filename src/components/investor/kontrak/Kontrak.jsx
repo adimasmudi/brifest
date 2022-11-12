@@ -29,7 +29,7 @@ const Kontrak = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://brifest-api.herokuapp.com/investor/viewFormPerjanjian/${id}`,
+      url: `http://localhost:5000/investor/viewFormPerjanjian/${id}`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -58,26 +58,22 @@ const Kontrak = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(kalimatPerjanjian, images)
+
     formData.append('kalimatPerjanjian', kalimatPerjanjian)
     formData.append('jumlahLembarSaham', saham)
     formData.append('images', images[0], images[0].name)
     formData.append('usahaId', usaha._id)
 
     axios
-      .post(
-        'https://brifest-api.herokuapp.com/investor/addPerjanjianInvestor',
-        formData,
-        {
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .post(`http://localhost:5000/investor/addPerjanjianInvestor`, formData, {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((_) => {
-        window.location.href = `/investor/detail-pembayaran/${usaha._id}`
+        window.location.href = `/investor/detail-pembayaran/${usaha._id}?saham=${saham}`
       })
   }
 

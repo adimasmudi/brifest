@@ -28,8 +28,11 @@ const CariUsaha = ({ data }) => {
       })
     }
 
+    console.log('dana terkumpul', danaTerkumpul)
+
     return danaTerkumpul
   }
+
   return (
     <div className='my-2 p-4 rounded-xl w-full'>
       <div className='flex flex-1 justify-between'>
@@ -62,7 +65,7 @@ const CariUsaha = ({ data }) => {
             key={umkm._id}
           >
             <img
-              src={`https://brifest-api.herokuapp.com/public/${umkm.images}`}
+              src={`http://localhost:5000/public/${umkm.images}`}
               alt={umkm.images}
             />
             <div className='p-4  '>
@@ -84,9 +87,11 @@ const CariUsaha = ({ data }) => {
                 ></div>
               </div>
               <p>
-                {(
-                  hitungTerkumpul(umkm.pendanaanId) / umkm.kebutuhanDana
-                ).toFixed(0) + '%'}{' '}
+                {Math.round(
+                  (hitungTerkumpul(umkm.pendanaanId) / umkm.kebutuhanDana) *
+                    100,
+                  2
+                ) + '%'}{' '}
                 Terkumpul
               </p>
             </div>

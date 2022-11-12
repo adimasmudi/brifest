@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault()
     axios({
       method: 'post',
-      url: 'https://brifest-api.herokuapp.com/',
+      url: `http://localhost:5000`,
       data: {
         email,
         password,
@@ -26,16 +26,16 @@ const Login = () => {
       .then((result) => {
         // console.log(result)
         // set the cookie
-        cookies.set('TOKEN', result.data.token, {
+        cookies.set('TOKEN', result?.data.token, {
           path: '/',
         })
 
-        result.data.userRole
-          ? navigate(`/${result.data.userRole}/dashboard`)
+        result?.data.userRole
+          ? navigate(`/${result?.data.userRole}/dashboard`)
           : setError('Internal Server Error')
       })
       .catch((error) => {
-        setError(result.data.message)
+        setError(result?.data?.message)
       })
   }
 

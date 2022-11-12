@@ -19,7 +19,7 @@ const DaftarUsaha = () => {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `https://brifest-api.herokuapp.com/umkm/usahaUser`,
+      url: `http://localhost:5000/umkm/usahaUser`,
       headers: {
         Authorization: `Bearer ${token}`,
       },

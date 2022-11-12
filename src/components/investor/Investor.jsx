@@ -30,7 +30,7 @@ const Investor = () => {
     // set configurations for the API call here
     const configuration = {
       method: 'get',
-      url: 'https://brifest-api.herokuapp.com/investor/dashboard',
+      url: `http://localhost:5000/investor/dashboard`,
       headers: {
         Authorization: `Bearer ${token}`,
       },
